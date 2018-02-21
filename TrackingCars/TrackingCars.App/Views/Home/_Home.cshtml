@@ -1,0 +1,73 @@
+﻿<!-- ko with: home -->
+<div id="discussion">
+
+</div>
+<div class="row mt-3">
+    @*multiple="true"*@
+    <div class="panel panel-default">
+        <div class="panel-heading">Search</div>
+        <div class="panel-body">
+
+            <div class="col-md-6">
+                <div class="panel-body">
+                    <span class="label label-default">Customers</span>
+                    <select class='form-control'
+                            data-bind="options: customersLookup,optionsText: 'name', optionsValue: 'id',value:SC.Id, optionsCaption: 'All',event: { change: function(data, event) { SearchCustomer(); } } "></select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel-body">
+                    <span class="label label-default">Vehicle Status</span>
+                    <select class='form-control'
+                            data-bind="options: vehicleStatusLookup,optionsText: 'name', optionsValue: 'id',value:SC.ConnectionStatusId, optionsCaption: 'All',event: { change: function(data, event) {  } } "></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<br />
+
+<div class="row mt-3" style="display:none" data-bind="visible:customers().length>0">
+
+    <!-- ko foreach: customers-->
+    <div class="col-md-6 mt-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><span data-bind="text: name"></span></div>
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>VIN</th>
+                        <th>RegNo</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach :vehicles">
+                    <tr data-bind="visible:($parents[1].SC.ConnectionStatusId() ==null || $parents[1].SC.ConnectionStatusId()==connectionStatus())">
+                        <td data-bind="text: vin"></td>
+                        <td data-bind="text: regNo"></td>
+                        <td>
+                            <div id="light">
+                                <a href="#" data-toggle="tooltip" title="Disconnected"><span data-bind="css: {active:connectionStatus()==0}" id="red"></span></a>
+                                <a href="#" data-toggle="tooltip" title="Connected"><span data-bind="css: {active:connectionStatus()==1}" id="green"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+    </div>
+    <!-- /ko -->
+
+
+</div>
+
+<!-- /ko -->
