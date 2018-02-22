@@ -7,7 +7,12 @@
 #### - MS SQL Server 2014.
 #### - MS SignalR for pushing status.
 #### - MS Web API2.
+#### - Entity Framework.
+#### - Bootstrap.
 #### - MS Membership for authentication.
+#### - KnockoutJS.
+
+
 
 ### Also kindly find below steps to run this solution on your local machine
 
